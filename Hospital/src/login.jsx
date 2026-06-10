@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react'
+import { useNavigate } from "react-router-dom";
 import './App.css'
 
-function App() {
+function Login({ setIsLoggedIn })  {
+  const navigate = useNavigate();
+
   const [login, setLogin] = useState("")
   const [password, setPassword] = useState("")
 
@@ -18,6 +21,8 @@ function App() {
     const doctor = doctors.find(d => d.login === login);
     if (doctor && password === doctor.password) {
       alert("Zalogowano pomyślnie!")
+      setIsLoggedIn(true);
+      navigate("/dashboard");
     } else {
       alert("Nieprawidłowy login lub hasło.")
     } 
@@ -42,4 +47,4 @@ function App() {
   )
 }
 
-export default App
+export default Login
