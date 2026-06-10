@@ -7,11 +7,12 @@ import Dashboard from './views/Dashboard.jsx'
 
 function Root() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [loggedDoctor, setLoggedDoctor] = useState(null);
 
   let dashboardElement;
 
   if (isLoggedIn) {
-    dashboardElement = <Dashboard />;
+    dashboardElement = <Dashboard doctor={loggedDoctor} />;
   } else {
     dashboardElement = <Navigate to="/" />;
   }
@@ -20,7 +21,7 @@ function Root() {
     <Routes>
       <Route
         path="/"
-        element={<Login setIsLoggedIn={setIsLoggedIn} />}
+        element={<Login setIsLoggedIn={setIsLoggedIn} setLoggedDoctor={setLoggedDoctor} />}
       />
 
       <Route

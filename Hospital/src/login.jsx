@@ -2,12 +2,11 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from "react-router-dom";
 import './App.css'
 
-function Login({ setIsLoggedIn })  {
+function Login({ setIsLoggedIn, setLoggedDoctor }) {
   const navigate = useNavigate();
 
   const [login, setLogin] = useState("")
   const [password, setPassword] = useState("")
-
   const [doctors, setDoctors] = useState([])
 
   useEffect(() => {
@@ -22,26 +21,29 @@ function Login({ setIsLoggedIn })  {
     if (doctor && password === doctor.password) {
       alert("Zalogowano pomyślnie!")
       setIsLoggedIn(true);
+      setLoggedDoctor(doctor);
       navigate("/dashboard");
     } else {
       alert("Nieprawidłowy login lub hasło.")
-    } 
+    }
     setLogin("")
     setPassword("")
   }
 
   return (
     <>
-      <div className='login'>
-        <div className='field'>
-          <input type='text' value={login} onChange={(e) => setLogin(e.target.value)} />
-          <div className='userLogin'>Login</div>
+      <div className='container'>
+        <div className='login'>
+          <div className='field'>
+            <input type='text' value={login} onChange={(e) => setLogin(e.target.value)} />
+            <div className='userLogin'>Login</div>
+          </div>
+          <div className='field'>
+            <input type='password' value={password} onChange={(e) => setPassword(e.target.value)} />
+            <div className='userPassword'>Hasło</div>
+          </div>
+          <button onClick={Login}>Zaloguj</button>
         </div>
-        <div className='field'>
-          <input type='password' value={password} onChange={(e) => setPassword(e.target.value)} />
-          <div className='userPassword'>Hasło</div>
-        </div>
-        <button onClick={Login}>Zaloguj</button>
       </div>
     </>
   )

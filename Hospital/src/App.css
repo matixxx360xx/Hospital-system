@@ -3,13 +3,16 @@
 }
 
 body {
+  background: #f4f8fb;
+  font-family: Arial, sans-serif;
+}
+
+.container {
   height: 100vh;
+  
   display: flex;
   justify-content: center;
   align-items: center;
-
-  background: #f4f8fb;
-  font-family: Arial, sans-serif;
 }
 
 .login {
