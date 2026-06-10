@@ -37,6 +37,15 @@ db.run(`
   (1, 'Jan', 'Kowalski', 'Kardiolog', 'admin', '1234')
 `);
 
+app.get("/doctors", (req, res) => {
+  db.all("SELECT * FROM doctors", (err, rows) => {
+    if (err) {
+      res.status(500).json({ error: err.message });
+    }
+    res.json(rows);
+  });
+});
+
 app.listen(5000, () => {
   console.log("Serwer działa na porcie 5000");
 });
